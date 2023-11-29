@@ -1,0 +1,73 @@
+<div class="loginbox flex justify-center items-center p-2 h-screen">
+  <form id="signUpForm" class="bg-blue-900 loginform  flex justify-center flex-col w-96 rounded-lg p-8" [formGroup] ="reactiveForm" (ngSubmit)="onFormSubmitted()">
+      <h1 class="text-center text-2xl">Sign-Up</h1>
+      <div class="formcontrol p-5  flex flex-col">
+        <mat-form-field class="example-full-width">
+            <mat-label>Username</mat-label>
+            <input matInput placeholder="Ex. John"  formControlName="username">
+            <small *ngIf="reactiveForm.get('username').invalid && reactiveForm.get('username').touched">
+              *Username is not valid
+            </small>
+        </mat-form-field>
+      </div>
+      <div class="formcontrol p-5  flex flex-col">
+        <mat-form-field class="example-full-width">
+            <mat-label>Email Id</mat-label>
+            <input matInput placeholder="Ex. user@gmail.com"  formControlName="email">
+            <small *ngIf="reactiveForm.get('email').invalid && reactiveForm.get('email').touched">
+              *Email is not valid
+            </small>
+        </mat-form-field>
+      </div>
+      <div class="formcontorl p-5  flex flex-col">
+        <mat-form-field class="example-full-width">
+            <mat-label>Mobile Number</mat-label>
+            <input matInput placeholder="Ex. 9876543210" formControlName="mobile">
+            <small *ngIf="reactiveForm.get('mobile').invalid && reactiveForm.get('mobile').touched">
+              *Mobile Number is not valid
+            </small>
+        </mat-form-field>
+      </div>
+      <div class="formcontrol p-5  flex flex-col">
+        <mat-form-field>
+            <mat-label name="gender">Gender</mat-label>
+            <mat-select formControlName="gender">
+              @for (gender of genders; track gender) {
+                <mat-option [value]="gender.value">{{gender.viewValue}}</mat-option>
+              }
+            </mat-select>
+            <small *ngIf="reactiveForm.get('gender').invalid && reactiveForm.get('gender').touched">
+              *Gender is not valid
+            </small>
+        </mat-form-field>
+      </div>
+      <div class="formcontrol p-5  flex flex-col">
+        <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon class="text-blue-900">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <small *ngIf="reactiveForm.get('password').invalid && reactiveForm.get('password').touched">
+              *Password is not valid
+            </small>
+        </mat-form-field>
+      </div>
+      <div class="formcontrol p-5 flex flex-col">
+        <mat-form-field>
+            <mat-label>Confirm Password</mat-label>
+            <input  matInput [type]="hide ? 'password' : 'text'" formControlName="userconfirmpassword">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon class="text-blue-900">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <small *ngIf="reactiveForm.get('userconfirmpassword').invalid && reactiveForm.get('userconfirmpassword').touched">
+              *Password is not valid
+            </small>
+        </mat-form-field>
+      </div>
+      <div class="flex justify-center items-center">
+      <button type="submit" class="w-24 text-base button-color" mat-raised-button >Signup</button>
+      </div>
+      <span id="displayError" ></span>
+  </form>
+</div>
