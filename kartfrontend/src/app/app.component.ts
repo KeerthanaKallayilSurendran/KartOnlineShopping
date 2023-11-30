@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { SignupComponent } from './signup/signup.component';
-import { SignupHeaderComponent } from './signup-header/signup-header.component'
+import { SignupHeaderComponent } from './signup-header/signup-header.component';
 
 @Component({
   selector: 'app-root',

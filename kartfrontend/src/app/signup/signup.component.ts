@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormGroup,
-  FormControl,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -14,6 +10,8 @@ import { Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SignUpService } from './signup.service';
 import { HttpClientModule } from '@angular/common/http';
+import { confirmPasswordValidator } from '../validator/confirmpassword.validator';
+import { RouterOutlet, RouterLink } from '@angular/router';
 
 interface Gender {
   value: string;
@@ -36,14 +34,14 @@ interface Gender {
     ReactiveFormsModule,
     HttpClientModule,
     CommonModule,
+    RouterOutlet,
+    RouterLink
   ],
 })
 export class SignupComponent implements OnInit {
   reactiveForm: FormGroup;
 
-  constructor(
-    private signUpService: SignUpService
-    ) {}
+  constructor(private signUpService: SignUpService) {}
 
   ngOnInit(): void {
     this.reactiveForm = new FormGroup({
@@ -67,6 +65,9 @@ export class SignupComponent implements OnInit {
         ),
       ]),
       userconfirmpassword: new FormControl(null, [Validators.required]),
+    },
+    {
+      validators: confirmPasswordValidator('password', 'userconfirmpassword')
     });
   }
 
@@ -79,15 +80,13 @@ export class SignupComponent implements OnInit {
   onFormSubmitted() {
     console.log(this.reactiveForm.value);
     const values = this.reactiveForm.value;
-    this.signUpService.connect().subscribe(
-      {
-        next: data => {
-          console.log(data, 85);
-        },
-        error: err => {
-          console.log(err, 55);
-        }
-      }
-    )
+    this.signUpService.connect(values).subscribe({
+      next: (data) => {
+        console.log(data, 85);
+      },
+      error: (err) => {
+        console.log(err, 55);
+      },
+    });
   }
 }

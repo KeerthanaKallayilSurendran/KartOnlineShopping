@@ -1,4 +1,4 @@
-<div class="loginbox flex justify-center items-center p-2 h-screen">
+<div class="loginbox flex justify-center items-center p-2 mt-10">
   <form id="signUpForm" class="bg-blue-900 loginform  flex justify-center flex-col w-96 rounded-lg p-8" [formGroup] ="reactiveForm" (ngSubmit)="onFormSubmitted()">
       <h1 class="text-center text-2xl">Sign-Up</h1>
       <div class="formcontrol p-5  flex flex-col">
@@ -63,11 +63,17 @@
             <small *ngIf="reactiveForm.get('userconfirmpassword').invalid && reactiveForm.get('userconfirmpassword').touched">
               *Password is not valid
             </small>
+            <small *ngIf="reactiveForm.hasError('confirmPasswordValidator', 'userconfirmpassword')">
+              *Password didn't match
+            </small>
         </mat-form-field>
       </div>
       <div class="flex justify-center items-center">
-      <button type="submit" class="w-24 text-base button-color" mat-raised-button >Signup</button>
+      <button [disabled]="reactiveForm.invalid" type="submit" class="w-24 text-base button-color" mat-raised-button >Signup</button>
       </div>
       <span id="displayError" ></span>
   </form>
+</div>
+<div class="flex justify-center items-center pb-20">
+  <span class="text-lg">You already have account?</span><a class="text-blue-900 text-lg font-bold" routerLink="/signin">Signin</a>
 </div>

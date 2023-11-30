@@ -4,11 +4,13 @@ import { Observable } from "rxjs";
 
 @Injectable()
 export class SignUpService {
-  constructor(
-    private http: HttpClient
-  ) {}
 
-  connect(): Observable<any> {
-    return this.http.get("http://localhost:3000/check")
+  constructor(private http: HttpClient) {}
+
+
+  connect(values): Observable<any> {
+    console.log(values, 12);
+    // return this.http.post("http://localhost:3000/signup", values)
+    return this.http.post("http://localhost:3000/signup", values)
   }
 }
