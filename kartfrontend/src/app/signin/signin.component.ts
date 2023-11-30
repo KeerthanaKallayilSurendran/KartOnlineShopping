@@ -1,18 +1,59 @@
-import { Component } from "@angular/core";
-import {MatButtonModule} from '@angular/material/button';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {FormsModule} from '@angular/forms';
-import {MatIconModule} from '@angular/material/icon';
+import { Component, OnInit } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ReactiveFormsModule, FormControl, FormGroup, FormsModule, Validators } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterOutlet, RouterLink } from '@angular/router';
+import { SiginService } from './signin.service';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-signin',
   standalone: true,
   templateUrl: './signin.component.html',
   styleUrl: './signin.component.scss',
-  imports: [MatButtonModule, MatInputModule, MatFormFieldModule, FormsModule, MatIconModule]
+  providers: [SiginService],
+  imports: [
+    MatButtonModule,
+    MatInputModule,
+    MatFormFieldModule,
+    FormsModule,
+    MatIconModule,
+    RouterOutlet,
+    RouterLink,
+    CommonModule,
+    HttpClientModule,
+    ReactiveFormsModule
+  ],
 })
 export class SigninComponent {
-  hide = true;
-}
+  
+  loginForm: FormGroup;
 
+  constructor(private signinService: SiginService) {}
+
+ngOnInit(): void {
+  this.loginForm = new FormGroup({
+    email: new FormControl("", [Validators.required, Validators.email]),
+    password: new FormControl("", [Validators.required])
+  })
+}
+  
+  hide = true;
+
+  onFormLoginSubmitted() {
+    const values = this.loginForm.value
+    this.signinService.connect(values).subscribe({
+      next:  (data) => {
+        alert("Login is Sucess")
+      },
+      error: (err) => {
+        alert(err)
+      }
+    })
+  }
+
+}

@@ -1,26 +1,33 @@
-<div class="loginbox flex justify-center items-center p-2 h-screen">
-  <form id="signUpForm" class="loginform  bg-blue-900 loginform  flex justify-center flex-col w-96 rounded-lg p-8" action="" method="post">
-      <h1 class="text-center">Sign-In</h1>
+<div class="loginbox flex justify-center items-center p-2 mt-10">
+  <form id="signUpForm" class="bg-blue-900 loginform  flex justify-center flex-col w-96 rounded-lg p-8" [formGroup] ="loginForm" (ngSubmit)="onFormLoginSubmitted()">
+      <h1 class="text-center text-2xl">Sign-Up</h1>
       <div class="formcontrol p-5  flex flex-col">
         <mat-form-field class="example-full-width">
             <mat-label>Email Id</mat-label>
-            <input matInput placeholder="Ex. user@gmail.com" name="email" id="userEmail">
-            <span id="ueMailErrorMsg" ></span>
+            <input matInput placeholder="Ex. user@gmail.com"  formControlName="email">
+            <small *ngIf="loginForm.get('email').invalid && loginForm.get('email').touched">
+              *Email is not valid
+            </small>
         </mat-form-field>
       </div>
       <div class="formcontrol p-5  flex flex-col">
         <mat-form-field>
             <mat-label>Password</mat-label>
-            <input name="password" id="userPassword" matInput [type]="hide ? 'password' : 'text'">
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
               <mat-icon class="text-blue-900">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
-            <span id="uPassErrorMsg" ></span>
+            <small *ngIf="loginForm.get('password').invalid && loginForm.get('password').touched">
+              *Password is not valid
+            </small>
         </mat-form-field>
       </div>
       <div class="flex justify-center items-center">
-        <button type="submit" class="w-24 text-base button-color" mat-raised-button >SignIn</button>
+      <button [disabled]="loginForm.invalid" type="submit" class="w-24 text-base button-color" mat-raised-button >Signup</button>
       </div>
-        <span id="displayError" ></span>
+      <span id="displayError" ></span>
   </form>
+</div>
+<div class="flex justify-center items-center pb-20">
+  <span class="text-lg">You don't have account?</span><a class="text-blue-900 text-lg font-bold" routerLink="/signup">Signup</a>
 </div>

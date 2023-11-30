@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormControl, ReactiveFormsModule, Validators} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
-import { Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SignUpService } from './signup.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -82,10 +81,10 @@ export class SignupComponent implements OnInit {
     const values = this.reactiveForm.value;
     this.signUpService.connect(values).subscribe({
       next: (data) => {
-        console.log(data, 85);
+        alert("Signup is Sucess")
       },
       error: (err) => {
-        console.log(err, 55);
+        alert(err);
       },
     });
   }
