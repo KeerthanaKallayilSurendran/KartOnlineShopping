@@ -37,7 +37,23 @@ app.post('/signup', async(req, res) => {
   res.json({ message: 'hello' })
 });
 
-console.log(19);
+console.log(40);
+
+app.post('/signin', async(req, res) => {
+
+  try {
+    const check = await User.findOne({ email: req.body.email});
+    if(check.password == req.body.password){
+      res.json({ message: 'hello'})
+    }
+  } catch (error) {
+    console.log(error.message);
+  }
+
+ 
+});
+
+
 
 
 app.listen(port, () => {
