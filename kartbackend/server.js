@@ -1,11 +1,13 @@
+const bcrypt = require('bcrypt');
 const express = require('express');
 const app = express();
 const port = 3000; 
-const cors = require('cors')
-const morgan = require('morgan')
+const cors = require('cors');
+const morgan = require('morgan');
 const { dbConnect } = require("./mongodb");
-const { User } = require("./Modals/userSchema")
-console.log(6);
+const { User } = require("./Modals/userSchema");
+const SALT_ROUNDS = 5
+console.log(6); 
 
 app.use(cors({
   origin: 'http://localhost:4200'
@@ -25,7 +27,7 @@ app.post('/signup', async(req, res) => {
     email: req.body.email,
     mobile: req.body.mobile,
     gender: req.body.gender,
-    password: req.body.password,
+    password: await bcrypt.hash(req.body.password, SALT_ROUNDS) ,
   };
   try {
     console.log(27);
