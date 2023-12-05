@@ -10,7 +10,8 @@ import { CommonModule } from '@angular/common';
 import { SignUpService } from './signup.service';
 import { HttpClientModule } from '@angular/common/http';
 import { confirmPasswordValidator } from '../validator/confirmpassword.validator';
-import { RouterOutlet, RouterLink } from '@angular/router';
+// import { Router, RouterOutlet, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 interface Gender {
   value: string;
@@ -32,15 +33,13 @@ interface Gender {
     MatIconModule,
     ReactiveFormsModule,
     HttpClientModule,
-    CommonModule,
-    RouterOutlet,
-    RouterLink
+    CommonModule, 
   ],
 })
 export class SignupComponent implements OnInit {
   reactiveForm: FormGroup;
 
-  constructor(private signUpService: SignUpService) {}
+  constructor(private signUpService: SignUpService, private router: Router) {}
 
   ngOnInit(): void {
     this.reactiveForm = new FormGroup({
@@ -81,7 +80,8 @@ export class SignupComponent implements OnInit {
     const values = this.reactiveForm.value;
     this.signUpService.connect(values).subscribe({
       next: (data) => {
-        alert("Signup is Sucess")
+        alert("Signup is Sucess");
+        this.router.navigate(['/signin']);
       },
       error: (err) => {
         alert(err);
