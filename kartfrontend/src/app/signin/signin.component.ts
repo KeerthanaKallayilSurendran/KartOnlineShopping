@@ -8,6 +8,8 @@ import { RouterOutlet, RouterLink } from '@angular/router';
 import { SiginService } from './signin.service';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -26,14 +28,14 @@ import { HttpClientModule } from '@angular/common/http';
     RouterLink,
     CommonModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
 })
 export class SigninComponent {
   
   loginForm: FormGroup;
 
-  constructor(private signinService: SiginService) {}
+  constructor(private signinService: SiginService, private router: Router) {}
 
 ngOnInit(): void {
   this.loginForm = new FormGroup({
@@ -47,8 +49,14 @@ ngOnInit(): void {
   onFormLoginSubmitted() {
     const values = this.loginForm.value
     this.signinService.connect(values).subscribe({
-      next:  (data) => {
-        alert("Login is Sucess")
+      next: (data) => {
+        console.log(data, 53)
+        if (data.message) alert(data.message);
+        if(data.success){
+          this.router.navigate(['/home'])
+        }else{
+          this.router.navigate(['/signin'])
+        }
       },
       error: (err) => {
         alert(err)

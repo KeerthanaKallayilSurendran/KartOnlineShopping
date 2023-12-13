@@ -80,7 +80,8 @@ export class SignupComponent implements OnInit {
     const values = this.reactiveForm.value;
     this.signUpService.connect(values).subscribe({
       next: (data) => {
-        alert("Signup is Sucess");
+        console.log(data)
+        if (data.message) alert(data.message)
         this.router.navigate(['/signin']);
       },
       error: (err) => {
