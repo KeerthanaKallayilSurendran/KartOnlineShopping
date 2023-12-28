@@ -1,3 +1,4 @@
+<app-signup-header></app-signup-header>
 <div class="loginbox flex justify-center items-center p-2 mt-10">
   <form id="signUpForm" class="bg-blue-900 loginform  flex justify-center flex-col w-96 rounded-lg p-8" [formGroup] ="reactiveForm" (ngSubmit)="onFormSubmitted()">
       <h1 class="text-center text-2xl">Sign-Up</h1>
@@ -75,5 +76,6 @@
   </form>
 </div>
 <div class="flex justify-center items-center pb-20">
-  <span class="text-lg">You already have account?</span><a class="text-blue-900 text-lg font-bold" routerLink="/signin">Signin</a>
+  <span class="text-lg">You already have account?</span><a class="text-blue-900 text-lg font-bold" routerLink="/signin" >Sign In</a>
+
 </div>

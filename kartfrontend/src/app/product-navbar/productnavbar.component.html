@@ -1,0 +1,27 @@
+<div class="content">
+    <div class="sidebar flex justify-between items-center">
+        <button mat-button [matMenuTriggerFor]="categories">Categories</button>
+        <mat-menu #categories="matMenu" yPosition="below">
+            <button mat-menu-item><a href="#">All</a></button>
+            <button mat-menu-item><a href="#">AutoBiography</a></button>
+            <button mat-menu-item><a href="#">Biography</a></button>
+            <button mat-menu-item><a href="#">Fiction</a></button>
+            <button mat-menu-item><a href="#">Comics</a></button>
+            <button mat-menu-item><a href="#">Finance</a></button>
+            <button mat-menu-item><a href="#">Non Fiction</a></button>
+            <button mat-menu-item><a href="#">Personal Development & Self Help</a></button>
+            <button mat-menu-item><a href="#">Philosophy</a></button>
+            <button mat-menu-item><a href="#">Sports</a></button>
+            <button mat-menu-item><a href="#">Travel</a></button>
+        </mat-menu>
+
+        <button mat-button [matMenuTriggerFor]="sort">Sort</button>
+        <mat-menu #sort="matMenu" yPosition="below">
+            <button mat-menu-item><a href="#">Best Selling </a></button>
+            <button mat-menu-item><a href="#">A to Z</a></button>
+            <button mat-menu-item><a href="#">Z to A</a></button>
+            <button mat-menu-item><a href="#">Price Low to High</a></button>
+            <button mat-menu-item><a href="#">Price High to Low</a></button>
+        </mat-menu>
+    </div>
+</div>

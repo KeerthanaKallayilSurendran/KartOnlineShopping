@@ -11,7 +11,8 @@ import { SignUpService } from './signup.service';
 import { HttpClientModule } from '@angular/common/http';
 import { confirmPasswordValidator } from '../validator/confirmpassword.validator';
 // import { Router, RouterOutlet, RouterLink } from '@angular/router';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { SignupHeaderComponent } from '../signup-header/signup-header.component';
 
 interface Gender {
   value: string;
@@ -34,6 +35,8 @@ interface Gender {
     ReactiveFormsModule,
     HttpClientModule,
     CommonModule, 
+    RouterLink,
+    SignupHeaderComponent
   ],
 })
 export class SignupComponent implements OnInit {

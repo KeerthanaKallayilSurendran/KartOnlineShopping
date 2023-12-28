@@ -9,6 +9,7 @@ import { SiginService } from './signin.service';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { SignupHeaderComponent } from '../signup-header/signup-header.component';
 
 
 
@@ -29,6 +30,7 @@ import { Router } from '@angular/router';
     CommonModule,
     HttpClientModule,
     ReactiveFormsModule,
+    SignupHeaderComponent
   ],
 })
 export class SigninComponent {
