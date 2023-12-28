@@ -5,17 +5,12 @@ const cors = require('cors');
 const morgan = require('morgan');
 const { dbConnect } = require("./mongodb");
 // const session = require('express-session')
-const userrouter = require('./routers/userrouter')
+const userrouter = require('./routers/userRouter')
 
 
 dbConnect();
 
 // Middlewares 
-// app.use(session({
-//   secret: 'secret',
-//   resave: false,
-//   saveUninitialized: false
-// }));
 app.use(cors({
   origin: 'http://localhost:4200'
 }));

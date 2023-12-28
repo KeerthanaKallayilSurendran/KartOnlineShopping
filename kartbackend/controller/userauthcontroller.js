@@ -1,4 +1,6 @@
-
+const { User } = require("../Modals/userSchema");
+const SALT_ROUNDS = 5
+const bcrypt = require('bcrypt')
 
 const userSignup = async (req, res) => {
     try {
@@ -43,6 +45,8 @@ const userSignin = async (req, res) => {
         res.json({ message: err.message });
     }
 }
+
+
 
 module.exports = {userSignin, userSignup}
 
