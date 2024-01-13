@@ -1,7 +1,8 @@
 const adminSignin = async (req, res) => {
+    console.log(2)
     try {
         const { email, password } = req.body
-        console.log(33);
+        console.log(4);
         const adminEmail = 'admin@gmail.com'
         const adminPassword= 'admin@321'
         const isMatch = compare(email, adminEmail && password, adminPassword)
