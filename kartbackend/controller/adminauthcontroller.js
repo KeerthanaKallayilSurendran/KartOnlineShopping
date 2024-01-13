@@ -5,7 +5,12 @@ const adminSignin = async (req, res) => {
         console.log(4);
         const adminEmail = 'admin@gmail.com'
         const adminPassword= 'admin@321'
-        const isMatch = compare(email, adminEmail && password, adminPassword)
+        function compare(email, adminEmail, password, adminPassword) {
+            return email === adminEmail && password === adminPassword;
+        }
+        
+        const isMatch = compare(email, adminEmail, password, adminPassword);
+        
         if (isMatch) {
             return res.json({ message: 'Signin successfully', success: true })
         }
@@ -18,7 +23,8 @@ const adminSignin = async (req, res) => {
 }
 
 
-module.exports = { adminSignin }
+module.exports = adminSignin
+
 
 
 

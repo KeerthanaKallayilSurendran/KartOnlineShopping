@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { adminSignin } = require('../controller/adminauthcontroller');
+const adminSignin = require('../controller/adminauthcontroller');
 
 
 // Routes

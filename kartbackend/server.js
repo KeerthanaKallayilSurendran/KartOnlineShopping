@@ -20,7 +20,7 @@ app.use(morgan('dev'))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/', userrouter)
-app.use('/admin', adminrouter)
+app.use('/', adminrouter)
 app.listen(port, () => {
   console.log(`Server started`, port);
 });
