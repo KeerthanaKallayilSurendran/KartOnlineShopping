@@ -6,4 +6,4 @@ const { adminSignin } = require('../controller/userauthcontroller');
 // Routes
 router.post('/admin', adminSignin)
 
-module.exports = adminrouter;
+module.exports = router;
