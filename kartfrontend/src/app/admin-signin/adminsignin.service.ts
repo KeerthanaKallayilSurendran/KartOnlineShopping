@@ -10,6 +10,6 @@ export class AdminSiginService {
 
   connect(values): Observable<any> {
     console.log(values, 12)
-    return this.http.post("http://localhost:3000/adminsignin", values)
+    return this.http.post("http://localhost:3000/admin", values)
   }
 }
